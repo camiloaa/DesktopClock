@@ -56,7 +56,7 @@ public class AlarmClock extends Activity implements OnItemClickListener {
 
     /** This must be false for production.  If true, turns on logging,
         test code, etc. */
-    static final boolean DEBUG = false;
+    static final boolean DEBUG = true;
 
     private SharedPreferences mPrefs;
     private LayoutInflater mFactory;

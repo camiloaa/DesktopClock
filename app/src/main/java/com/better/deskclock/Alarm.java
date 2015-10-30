@@ -55,6 +55,9 @@ public final class Alarm implements Parcelable {
         p.writeInt(daysOfWeek.getCoded());
         p.writeLong(time);
         p.writeInt(vibrate ? 1 : 0);
+        p.writeInt(prealarm ? 1 : 0);
+        p.writeInt(sunrise ? 1 : 0);
+        p.writeInt(fadein ? 1 : 0);
         p.writeString(label);
         p.writeParcelable(alert, flags);
         p.writeInt(silent ? 1 : 0);
@@ -110,6 +113,24 @@ public final class Alarm implements Parcelable {
         public static final String VIBRATE = "vibrate";
 
         /**
+         * True if alarm should ring before the selected time
+         * <P>Type: BOOLEAN</P>
+         */
+        public static final String PREALARM = "prealarm";
+
+        /**
+         * True if alarm should turn on lights
+         * <P>Type: BOOLEAN</P>
+         */
+        public static final String SUNRISE = "sunrise";
+
+        /**
+         * True if alarm should increase volume slowly
+         * <P>Type: BOOLEAN</P>
+         */
+        public static final String FADEIN = "fadein";
+
+        /**
          * Message to show when alarm triggers
          * Note: not currently used
          * <P>Type: STRING</P>
@@ -133,7 +154,7 @@ public final class Alarm implements Parcelable {
 
         static final String[] ALARM_QUERY_COLUMNS = {
             _ID, HOUR, MINUTES, DAYS_OF_WEEK, ALARM_TIME,
-            ENABLED, VIBRATE, MESSAGE, ALERT };
+            ENABLED, VIBRATE, PREALARM, SUNRISE, FADEIN, MESSAGE, ALERT };
 
         /**
          * These save calls to cursor.getColumnIndexOrThrow()
@@ -146,8 +167,11 @@ public final class Alarm implements Parcelable {
         public static final int ALARM_TIME_INDEX = 4;
         public static final int ALARM_ENABLED_INDEX = 5;
         public static final int ALARM_VIBRATE_INDEX = 6;
-        public static final int ALARM_MESSAGE_INDEX = 7;
-        public static final int ALARM_ALERT_INDEX = 8;
+        public static final int ALARM_PREALARM_INDEX = 7;
+        public static final int ALARM_SUNRISE_INDEX = 8;
+        public static final int ALARM_FADEIN_INDEX = 9;
+        public static final int ALARM_MESSAGE_INDEX = 10;
+        public static final int ALARM_ALERT_INDEX = 11;
     }
     //////////////////////////////
     // End column definitions
@@ -161,6 +185,9 @@ public final class Alarm implements Parcelable {
     public DaysOfWeek daysOfWeek;
     public long       time;
     public boolean    vibrate;
+    public boolean    prealarm;
+    public boolean    sunrise;
+    public boolean    fadein;
     public String     label;
     public Uri        alert;
     public boolean    silent;
@@ -173,6 +200,9 @@ public final class Alarm implements Parcelable {
         daysOfWeek = new DaysOfWeek(c.getInt(Columns.ALARM_DAYS_OF_WEEK_INDEX));
         time = c.getLong(Columns.ALARM_TIME_INDEX);
         vibrate = c.getInt(Columns.ALARM_VIBRATE_INDEX) == 1;
+        prealarm = c.getInt(Columns.ALARM_PREALARM_INDEX) == 1;
+        sunrise = c.getInt(Columns.ALARM_SUNRISE_INDEX) == 1;
+        fadein = c.getInt(Columns.ALARM_FADEIN_INDEX) == 1;
         label = c.getString(Columns.ALARM_MESSAGE_INDEX);
         String alertString = c.getString(Columns.ALARM_ALERT_INDEX);
         if (Alarms.ALARM_ALERT_SILENT.equals(alertString)) {
@@ -202,6 +232,9 @@ public final class Alarm implements Parcelable {
         daysOfWeek = new DaysOfWeek(p.readInt());
         time = p.readLong();
         vibrate = p.readInt() == 1;
+        prealarm = p.readInt() == 1;
+        sunrise = p.readInt() == 1;
+        fadein = p.readInt() == 1;
         label = p.readString();
         alert = (Uri) p.readParcelable(null);
         silent = p.readInt() == 1;
@@ -215,6 +248,9 @@ public final class Alarm implements Parcelable {
         hour = c.get(Calendar.HOUR_OF_DAY);
         minutes = c.get(Calendar.MINUTE);
         vibrate = true;
+        prealarm = false;
+        sunrise = false;
+        fadein = true;
         daysOfWeek = new DaysOfWeek(0);
         alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
     }

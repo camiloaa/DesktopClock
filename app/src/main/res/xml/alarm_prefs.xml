@@ -44,6 +44,10 @@
         android:key="sunrise"
         android:persistent="false"
         android:title="@string/alarm_sunrise" />
+    <CheckBoxPreference
+        android:key="fadein"
+        android:persistent="false"
+        android:title="@string/alarm_fadein" />
     <EditTextPreference android:key="label"
         android:persistent="false"
         android:title="@string/label"

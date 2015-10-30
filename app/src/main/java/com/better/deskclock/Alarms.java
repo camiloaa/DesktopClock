@@ -160,6 +160,9 @@ public class Alarms {
         values.put(Alarm.Columns.ALARM_TIME, alarm.time);
         values.put(Alarm.Columns.DAYS_OF_WEEK, alarm.daysOfWeek.getCoded());
         values.put(Alarm.Columns.VIBRATE, alarm.vibrate);
+        values.put(Alarm.Columns.PREALARM, alarm.prealarm);
+        values.put(Alarm.Columns.SUNRISE, alarm.sunrise);
+        values.put(Alarm.Columns.FADEIN, alarm.fadein);
         values.put(Alarm.Columns.MESSAGE, alarm.label);
 
         // A null alert Uri indicates a silent alarm.

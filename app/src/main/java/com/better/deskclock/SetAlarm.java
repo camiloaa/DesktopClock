@@ -47,6 +47,9 @@ public class SetAlarm extends PreferenceActivity
     private Preference mTimePref;
     private AlarmPreference mAlarmPref;
     private CheckBoxPreference mVibratePref;
+    private CheckBoxPreference mPrealarmPref;
+    private CheckBoxPreference mSunrisePref;
+    private CheckBoxPreference mFadeinPref;
     private RepeatPreference mRepeatPref;
     private MenuItem mTestAlarmItem;
 
@@ -74,14 +77,14 @@ public class SetAlarm extends PreferenceActivity
         mLabel.setOnPreferenceChangeListener(
                 new Preference.OnPreferenceChangeListener() {
                     public boolean onPreferenceChange(Preference p,
-                            Object newValue) {
+                                                      Object newValue) {
                         String val = (String) newValue;
                         // Set the summary based on the new label.
                         p.setSummary(val);
                         if (val != null && !val.equals(mLabel.getText())) {
                             // Call through to the generic listener.
                             return SetAlarm.this.onPreferenceChange(p,
-                                newValue);
+                                    newValue);
                         }
                         return true;
                     }
@@ -104,6 +107,12 @@ public class SetAlarm extends PreferenceActivity
         mAlarmPref.setOnPreferenceChangeListener(this);
         mVibratePref = (CheckBoxPreference) findPreference("vibrate");
         mVibratePref.setOnPreferenceChangeListener(this);
+        mPrealarmPref = (CheckBoxPreference) findPreference("prealarm");
+        mPrealarmPref.setOnPreferenceChangeListener(this);
+        mSunrisePref = (CheckBoxPreference) findPreference("sunrise");
+        mSunrisePref.setOnPreferenceChangeListener(this);
+        mFadeinPref = (CheckBoxPreference) findPreference("fadein");
+        mFadeinPref.setOnPreferenceChangeListener(this);
         mRepeatPref = (RepeatPreference) findPreference("setRepeat");
         mRepeatPref.setOnPreferenceChangeListener(this);
 
@@ -203,6 +212,9 @@ public class SetAlarm extends PreferenceActivity
         mMinutes = alarm.minutes;
         mRepeatPref.setDaysOfWeek(alarm.daysOfWeek);
         mVibratePref.setChecked(alarm.vibrate);
+        mPrealarmPref.setChecked(alarm.prealarm);
+        mSunrisePref.setChecked(alarm.sunrise);
+        mFadeinPref.setChecked(alarm.fadein);
         // Give the alert uri to the preference.
         mAlarmPref.setAlert(alarm.alert);
         updateTime();
@@ -269,6 +281,9 @@ public class SetAlarm extends PreferenceActivity
         alarm.minutes = mMinutes;
         alarm.daysOfWeek = mRepeatPref.getDaysOfWeek();
         alarm.vibrate = mVibratePref.isChecked();
+        alarm.prealarm = mPrealarmPref.isChecked();
+        alarm.sunrise = mSunrisePref.isChecked();
+        alarm.fadein = mFadeinPref.isChecked();
         alarm.label = mLabel.getText();
         alarm.alert = mAlarmPref.getAlert();
 

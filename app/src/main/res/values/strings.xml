@@ -332,6 +332,7 @@
     <string name="sunrise_off_summary">Sunrise is switched off</string>
 
     <!-- Fade-in -->
+    <string name="alarm_fadein">Increase volume slowly</string>
     <string name="fade_in_time_sec_title" tools:ignore="MissingTranslation">Fade-in duration</string>
     <string-array name="fade_in_time_sec_entries">
         <item>10 seconds</item>
