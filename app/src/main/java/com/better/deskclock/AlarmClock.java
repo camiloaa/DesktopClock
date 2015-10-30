@@ -147,7 +147,7 @@ public class AlarmClock extends Activity implements OnItemClickListener {
                 labelView.setVisibility(View.GONE);
             }
         }
-    };
+    }
 
     @Override
     public boolean onContextItemSelected(final MenuItem item) {
@@ -236,16 +236,6 @@ public class AlarmClock extends Activity implements OnItemClickListener {
                 startActivity(new Intent(AlarmClock.this, DeskClock.class));
             }
         };
-
-        final Button alarmButton = (Button) findViewById(R.id.alarm_button);
-        alarmButton.setOnClickListener(alarmClickListener);
-
-        final Button stopwatchButton = (Button) findViewById(R.id.stopwatch_button);
-        stopwatchButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivity(new Intent(AlarmClock.this, StopwatchActivity.class));
-            }
-        });        
     }
 
     private void addNewAlarm() {
@@ -268,7 +258,7 @@ public class AlarmClock extends Activity implements OnItemClickListener {
         // Use the current item to create a custom view for the header.
         final AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
         final Cursor c =
-                (Cursor) mAlarmsList.getAdapter().getItem((int) info.position);
+                (Cursor) mAlarmsList.getAdapter().getItem(info.position);
         final Alarm alarm = new Alarm(c);
 
         // Construct the Calendar to compute the time.

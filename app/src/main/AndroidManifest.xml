@@ -17,14 +17,13 @@
                 android:authorities="com.better.deskclock"
                 android:exported="false" />
 
-        <activity android:name="DeskClock"
-                android:label="@string/app_label"
-                android:theme="@android:style/Theme.Black.NoTitleBar"
-                android:icon="@drawable/ic_launcher_alarmclock"
-                android:launchMode="singleInstance"
-                android:configChanges="orientation|keyboardHidden|keyboard|navigation">		
-            <!-- while docked, this is our home application -->
-            <meta-data android:name="android.dock_home" android:value="true" />
+        <activity android:name="AlarmClock"
+            android:label="@string/app_label"
+            android:taskAffinity=""
+            android:icon="@drawable/ic_launcher_alarmclock"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,25 +32,6 @@
                 <category android:name="android.intent.category.DESK_DOCK" />
             </intent-filter>
         </activity>
-
-		<activity
-            android:name="StopwatchActivity"
-            android:label="@string/stopwatch_activity"
-            android:icon="@drawable/ic_launcher_alarmclock"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-             </intent-filter>
-        </activity>	
-                
-        <activity android:name="AlarmClock"
-                android:label="@string/alarm_list_title"
-                android:taskAffinity=""
-                android:theme="@android:style/Theme.Black.NoTitleBar"
-                android:excludeFromRecents="true"
-                android:configChanges="orientation|keyboardHidden|keyboard|navigation"
-                android:exported="true" />
 
         <activity-alias android:name="com.better.alarmclock.AlarmClock"
                 android:targetActivity="com.better.deskclock.AlarmClock"

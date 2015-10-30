@@ -360,7 +360,7 @@ public class DeskClock extends Activity {
             .scheme(android.content.ContentResolver.SCHEME_CONTENT)
             .authority(WEATHER_CONTENT_AUTHORITY)
             .path(WEATHER_CONTENT_PATH)
-            .appendPath(new Long(System.currentTimeMillis()).toString())
+            .appendPath(Long.toString(System.currentTimeMillis()))
             .build();
 
         if (DEBUG) Log.d(LOG_TAG, "querying genie: " + queryUri);
@@ -686,16 +686,6 @@ public class DeskClock extends Activity {
         mNextAlarm = (TextView) findViewById(R.id.nextAlarm);
         mNextAlarm.setOnClickListener(alarmClickListener);
 
-        final Button alarmButton = (Button) findViewById(R.id.alarm_button);
-        alarmButton.setOnClickListener(alarmClickListener);
-
-        final Button stopwatchButton = (Button) findViewById(R.id.stopwatch_button);
-        stopwatchButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            	startActivity(new Intent(DeskClock.this, StopwatchActivity.class));
-            }
-        });
-
         final ImageButton nightmodeButton = (ImageButton) findViewById(R.id.nightmode_button);
         nightmodeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -730,17 +720,6 @@ public class DeskClock extends Activity {
                     }
                 }
                 return false; // always pass the click through
-            }
-        });
-
-        // Tidy up awkward focus behavior: the first view to be focused in
-        // trackball mode should be the alarms button
-        final ViewTreeObserver vto = alarmButton.getViewTreeObserver();
-        vto.addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
-            public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-                if (oldFocus == null && newFocus == nightmodeButton) {
-                    alarmButton.requestFocus();
-                }
             }
         });
     }
