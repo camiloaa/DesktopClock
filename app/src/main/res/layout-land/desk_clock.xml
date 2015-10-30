@@ -68,13 +68,6 @@
                     android:shadowRadius="3.0"                        
                     />
 
-                <include layout="@layout/desk_clock_battery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dip"
-                    android:layout_weight="0"
-                    />
-
                 <ImageButton android:id="@+id/nightmode_button"
                     style="@style/RoundTouchButton"
                     android:layout_weight="0"

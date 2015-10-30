@@ -47,7 +47,28 @@
         android:summary="@string/volume_button_setting_summary"
         android:defaultValue="2" />
 
-	<Preference android:title="Clock Modder" 
-	    android:key="clock_creator" 
-	    android:summary="SpaceCaker" />    
+    <ListPreference
+        android:key="prealarm_duration"
+        android:title="@string/prealarm_duration_title"
+        android:entries="@array/prealarm_duration_entries"
+        android:entryValues="@array/prealarm_duration_values"
+        android:defaultValue="30"
+        android:dialogTitle="@string/prealarm_duration_title" />
+
+    <ListPreference
+        android:key="sunrise_duration"
+        android:title="@string/sunrise_duration_title"
+        android:entries="@array/sunrise_duration_entries"
+        android:entryValues="@array/sunrise_duration_values"
+        android:defaultValue="30"
+        android:dialogTitle="@string/sunrise_duration_title" />
+
+    <ListPreference
+        android:key="fade_in_time_sec"
+        android:title="@string/fade_in_time_sec_title"
+        android:entries="@array/fade_in_time_sec_entries"
+        android:entryValues="@array/fade_in_time_sec_values"
+        android:defaultValue="30"
+        android:dialogTitle="@string/fade_in_time_sec_title" />
+
 </PreferenceScreen>

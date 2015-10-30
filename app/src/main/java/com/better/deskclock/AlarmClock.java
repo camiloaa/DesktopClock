@@ -288,9 +288,6 @@ public class AlarmClock extends Activity implements OnItemClickListener {
             case R.id.menu_item_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
-            case R.id.menu_item_desk_clock:
-                startActivity(new Intent(this, DeskClock.class));
-                return true;
             case R.id.menu_item_add_alarm:
                 addNewAlarm();
                 return true;

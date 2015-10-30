@@ -36,6 +36,14 @@
     <CheckBoxPreference android:key="vibrate"
         android:persistent="false"
         android:title="@string/alarm_vibrate"/>
+    <CheckBoxPreference
+        android:key="prealarm"
+        android:persistent="false"
+        android:title="@string/alarm_prealarm" />
+    <CheckBoxPreference
+        android:key="sunrise"
+        android:persistent="false"
+        android:title="@string/alarm_sunrise" />
     <EditTextPreference android:key="label"
         android:persistent="false"
         android:title="@string/label"

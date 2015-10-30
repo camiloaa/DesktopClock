@@ -111,4 +111,5 @@
     <string name="weather_fetch_failure" msgid="7517010911981312358">"Wetterinformationen derzeit nicht verfügbar"</string>
     <string name="menu_item_dock_settings" msgid="3524235151132971114">"Dock-Einstellungen"</string>
     <string name="alarm_klaxon_service_desc" msgid="2153290655559916468">"Tonwiedergabedienst für in DeskClock eingestellte Alarme"</string>
+    <string name="prealarm_duration_title">Vorwecker-Dauer</string>
 </resources>

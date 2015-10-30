@@ -35,13 +35,18 @@ public class SettingsActivity extends PreferenceActivity
 
     private static final int ALARM_STREAM_TYPE_BIT =
             1 << AudioManager.STREAM_ALARM;
-
     private static final String KEY_ALARM_IN_SILENT_MODE =
             "alarm_in_silent_mode";
     static final String KEY_ALARM_SNOOZE =
             "snooze_duration";
     static final String KEY_VOLUME_BEHAVIOR =
             "volume_button_setting";
+    static final String KEY_PREALARM_DURATION =
+            "prealarm_duration";
+    static final String KEY_SUNRISE_DURATION =
+            "sunrise_duration";
+    static final String KEY_FADEIN_TIME_SEC =
+            "fade_in_time_sec";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +105,22 @@ public class SettingsActivity extends PreferenceActivity
                 (ListPreference) findPreference(KEY_ALARM_SNOOZE);
         snooze.setSummary(snooze.getEntry());
         snooze.setOnPreferenceChangeListener(this);
+
+        final ListPreference prealarm =
+                (ListPreference) findPreference(KEY_PREALARM_DURATION);
+        prealarm.setSummary(prealarm.getEntry());
+        prealarm.setOnPreferenceChangeListener(this);
+
+        final ListPreference sunrise =
+                (ListPreference) findPreference(KEY_SUNRISE_DURATION);
+        sunrise.setSummary(sunrise.getEntry());
+        sunrise.setOnPreferenceChangeListener(this);
+
+        final ListPreference fade_in =
+                (ListPreference) findPreference(KEY_FADEIN_TIME_SEC);
+        fade_in.setSummary(fade_in.getEntry());
+        fade_in.setOnPreferenceChangeListener(this);
+
     }
 
 }

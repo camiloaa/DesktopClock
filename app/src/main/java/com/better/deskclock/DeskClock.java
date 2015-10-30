@@ -123,7 +123,6 @@ public class DeskClock extends Activity {
     private TextView mDate;
 
     private TextView mNextAlarm = null;
-    private TextView mBatteryDisplay;
 
     private TextView mWeatherCurrentTemperature;
     private TextView mWeatherHighTemperature;
@@ -160,11 +159,6 @@ public class DeskClock extends Activity {
             if (DEBUG) Log.d(LOG_TAG, "mIntentReceiver.onReceive: action=" + action + ", intent=" + intent);
             if (Intent.ACTION_DATE_CHANGED.equals(action) || ACTION_MIDNIGHT.equals(action)) {
                 refreshDate();
-            } else if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
-                handleBatteryUpdate(
-                    intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0),
-                    intent.getIntExtra(BatteryManager.EXTRA_STATUS, BATTERY_STATUS_UNKNOWN),
-                    intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0));
             } else if (UiModeManager.ACTION_EXIT_DESK_MODE.equals(action)) {
                 if (mLaunchedFromDock) {
                     // moveTaskToBack(false);
@@ -308,7 +302,6 @@ public class DeskClock extends Activity {
                 : R.drawable.ic_lock_idle_alarm_saver),
             null, null, null);
 
-        mBatteryDisplay =
         mWeatherCurrentTemperature =
         mWeatherHighTemperature =
         mWeatherLowTemperature =
@@ -460,25 +453,6 @@ public class DeskClock extends Activity {
                 requestWeatherDataFetch();
             }
         }
-        if (pluggedIn != mPluggedIn || level != mBatteryLevel) {
-            mBatteryLevel = level;
-            mPluggedIn = pluggedIn;
-            refreshBattery();
-        }
-    }
-
-    private void refreshBattery() {
-        if (mBatteryDisplay == null) return;
-
-        if (mPluggedIn /* || mBatteryLevel < LOW_BATTERY_THRESHOLD */) {
-            mBatteryDisplay.setCompoundDrawablesWithIntrinsicBounds(
-                0, 0, android.R.drawable.ic_lock_idle_charging, 0);
-            mBatteryDisplay.setText(
-                getString(R.string.battery_charging_level, mBatteryLevel));
-            mBatteryDisplay.setVisibility(View.VISIBLE);
-        } else {
-            mBatteryDisplay.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void refreshDate() {
@@ -505,8 +479,6 @@ public class DeskClock extends Activity {
     private void refreshAll() {
         refreshDate();
         refreshAlarm();
-        refreshBattery();
-        refreshWeather();
     }
 
     private void doDim(boolean fade) {
@@ -561,7 +533,6 @@ public class DeskClock extends Activity {
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_DATE_CHANGED);
-        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(UiModeManager.ACTION_EXIT_DESK_MODE);
         filter.addAction(ACTION_MIDNIGHT);
         registerReceiver(mIntentReceiver, filter);
@@ -667,8 +638,6 @@ public class DeskClock extends Activity {
 
         mTime = (DigitalClock) findViewById(R.id.time);
         mDate = (TextView) findViewById(R.id.date);
-        mBatteryDisplay = (TextView) findViewById(R.id.battery);
-
         mTime.getRootView().requestFocus();
 
         mWeatherCurrentTemperature = (TextView) findViewById(R.id.weather_temperature);
