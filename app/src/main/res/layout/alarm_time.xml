@@ -18,15 +18,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/alarm_list_bg_day_01"
     android:orientation="horizontal">
 
     <com.better.deskclock.DigitalClock
         android:id="@+id/digitalClock"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="vertical"
         android:paddingLeft="16dip">
 
@@ -49,10 +48,10 @@
     <!-- A layout that displays the time.  Shows time, am/pm (if 12-hour),
          and an optional line below, used for day/days of week -->
     <LinearLayout android:id="@+id/linlinlayoutbtch" 
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:layout_weight="1"
+        android:layout_weight="5"
         android:orientation="vertical"
         android:paddingLeft="16dip"
         android:paddingRight="16dip">
@@ -92,7 +91,7 @@
         android:layout_marginTop="20.0dip"
         android:layout_marginBottom="20.0dip"
         android:src="#ff9d9d9d" />
-        
+
     <com.better.deskclock.DontPressWithParentLayout
         android:id="@+id/indicator"
         style="@style/alarm_list_left_column"

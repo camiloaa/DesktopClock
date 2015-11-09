@@ -128,7 +128,7 @@ public class DigitalClock extends LinearLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        if (Log.LOGV) Log.v("onAttachedToWindow " + this);
+        // if (Log.LOGV) Log.v("onAttachedToWindow " + this);
 
         if (mAttached) return;
         mAttached = true;
@@ -182,7 +182,7 @@ public class DigitalClock extends LinearLayout {
 
     private void setDateFormat() {
         mFormat = Alarms.get24HourMode(getContext()) ? Alarms.M24 : M12;
-        mAmPm.setShowAmPm(mFormat == M12);
+        mAmPm.setShowAmPm(mFormat.equals(M12));
     }
 
     void setLive(boolean live) {
