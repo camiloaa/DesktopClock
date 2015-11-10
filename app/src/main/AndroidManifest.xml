@@ -39,6 +39,17 @@
                 android:targetActivity="com.better.deskclock.AlarmClock"
                 android:exported="true" />
 
+        <activity
+            android:name="LightControlActivity"
+            android:label="@string/lightcontrol_activity"
+            android:icon="@drawable/ic_launcher_alarmclock"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="SettingsActivity"
                 android:label="@string/settings"
                 android:taskAffinity=""
