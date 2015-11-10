@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -230,12 +229,14 @@ public class AlarmClock extends Activity implements OnItemClickListener {
                     v.setSelected(hasFocus);
                 }
         });
-        
-        final View.OnClickListener alarmClickListener = new View.OnClickListener() {
+
+        final Button stopwatchButton = (Button) findViewById(R.id.light_button);
+        stopwatchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(AlarmClock.this, DeskClock.class));
+                startActivity(new Intent(AlarmClock.this, LightControlActivity.class));
             }
-        };
+        });
+
     }
 
     private void addNewAlarm() {

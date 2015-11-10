@@ -126,11 +126,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Use the alarm's label or the default label as the ticker text and
         // main text of the notification.
         String label = alarm.getLabelOrDefault(context);
-        Notification n = new Notification(R.drawable.stat_notify_alarm,
-                label, alarm.time);
-        n.setLatestEventInfo(context, label,
-                context.getString(R.string.alarm_notify_text),
-                pendingNotify);
+        Notification n = new Notification.Builder(context)
+                .setContentTitle(label)
+                .setContentText(context.getString(R.string.alarm_notify_text))
+                .setSmallIcon(R.drawable.stat_notify_alarm)
+                .setContentIntent(pendingNotify)
+                .build();
         n.flags |= Notification.FLAG_SHOW_LIGHTS
                 | Notification.FLAG_ONGOING_EVENT;
         n.defaults |= Notification.DEFAULT_LIGHTS;
@@ -174,11 +175,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Update the notification to indicate that the alert has been
         // silenced.
         String label = alarm.getLabelOrDefault(context);
-        Notification n = new Notification(R.drawable.stat_notify_alarm,
-                label, alarm.time);
-        n.setLatestEventInfo(context, label,
-                context.getString(R.string.alarm_alert_alert_silenced, timeout),
-                intent);
+        Notification n = new Notification.Builder(context)
+                .setContentTitle(label)
+                .setContentText(context.getString(R.string.alarm_alert_alert_silenced,timeout))
+                .setSmallIcon(R.drawable.stat_notify_alarm)
+                .setContentIntent(intent)
+                .build();
         n.flags |= Notification.FLAG_AUTO_CANCEL;
         // We have to cancel the original notification since it is in the
         // ongoing section and we want the "killed" notification to be a plain

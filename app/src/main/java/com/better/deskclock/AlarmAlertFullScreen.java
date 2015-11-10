@@ -171,11 +171,14 @@ public class AlarmAlertFullScreen extends Activity {
         PendingIntent broadcast =
                 PendingIntent.getBroadcast(this, mAlarm.id, cancelSnooze, 0);
         NotificationManager nm = getNotificationManager();
-        Notification n = new Notification(R.drawable.stat_notify_alarm,
-                label, 0);
-        n.setLatestEventInfo(this, label,
-                getString(R.string.alarm_notify_snooze_text,
-                    Alarms.formatTime(this, c)), broadcast);
+
+        Notification n = new Notification.Builder(this)
+                .setContentTitle(label)
+                .setContentText(getString(R.string.alarm_notify_snooze_text, Alarms.formatTime(this, c)))
+                .setSmallIcon(R.drawable.stat_notify_alarm)
+                .setContentIntent(broadcast)
+                .build();
+
         n.flags |= Notification.FLAG_AUTO_CANCEL
                 | Notification.FLAG_ONGOING_EVENT;
         nm.notify(mAlarm.id, n);
