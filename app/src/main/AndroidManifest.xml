@@ -1,17 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.better.deskclock"
-        android:versionCode="202" android:versionName="2.0.2">
+        android:versionCode="1" android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
-
     <application android:label="@string/app_label"
                  android:icon="@drawable/ic_launcher_alarmclock">
 
