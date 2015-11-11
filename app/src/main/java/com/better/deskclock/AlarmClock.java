@@ -75,7 +75,7 @@ public class AlarmClock extends Activity implements OnItemClickListener {
 
     private class AlarmTimeAdapter extends CursorAdapter {
         public AlarmTimeAdapter(Context context, Cursor cursor) {
-            super(context, cursor);
+            super(context, cursor, 0);
         }
 
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
